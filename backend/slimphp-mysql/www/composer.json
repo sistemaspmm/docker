@@ -1,0 +1,27 @@
+{
+    "name": "luizschmitt/docker-slim-api",
+    "description": "Slim Framework on Docker",
+    "authors": [{
+        "name": "Luiz Schmitt",
+        "email": "lzschmitt@gmail.com"
+    }],
+    "require": {
+        "php": ">=7.2",
+        "monolog/monolog": "^1.17",
+        "slim/slim": "^3.12",
+        "slim/php-view": "^2.2",
+        "slim/csrf": "^0.8",
+        "slim/pdo": "^1.10",
+        "faapz/pdo": "^1.11",
+        "tuupola/base62": "^2.0.",
+        "tuupola/cors-middleware": "^0.9",
+        "tuupola/slim-basic-auth": "^3.2",
+        "tuupola/slim-jwt-auth": "^3.1",
+        "phpmailer/phpmailer": "^6.0",
+        "mikica/clickjacking-middleware": "^1.07"
+    },
+    "require-dev": {
+        "pds/skeleton": "~1.0",
+        "phpunit/phpunit": ">=4.8 < 6.0"
+    }
+}

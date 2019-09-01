@@ -1,0 +1,23 @@
+version: '2'
+
+volumes:
+ mysql56_data:
+
+services:
+ mysql56:
+  image: mysql:5.6
+  network_mode: bridge
+  cpu_shares: 128
+  mem_reservation: 128m
+  mem_limit: 256m
+  memswap_limit: -1
+  privileged: true
+  restart: unless-stopped
+  container_name: mysql56-container
+  hostname: mysql56
+  ports:
+   - "3306:3306"
+  environment:
+   MYSQL_ROOT_PASSWORD: 123456
+  volumes:
+   - mysql56_data:/var/lib/mysql
