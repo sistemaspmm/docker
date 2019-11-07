@@ -1,0 +1,40 @@
+version: "2"
+
+volumes:
+    # driver: local
+  oradata:
+  dbs:
+
+services:
+  oracle:
+    image: rodrixcornell/oracle:xe-11.2.0.2
+    container_name: oracle-xe-11.2
+    cpu_shares: 512
+    shm_size: 1g
+    mem_reservation: 512m
+    mem_limit: 2g
+    memswap_limit: -1
+    privileged: true
+    # restart: always
+
+    hostname: oracle-xe-11.2.0.2
+
+    environment:
+      # ORACLE_SID: "pmm" # default: ORCLCDB
+      # ORACLE_PDB: "semad" # default: ORCLPDB1
+      ORACLE_PWD: "123456" # default: auto generated
+      # ORACLE_CHARACTERSET: "AL32UTF8" # default: AL32UTF8
+
+    ports:
+      - "1521:1521"
+      # - "8080:8080"
+
+    volumes:
+      # - "./oracle/initial_data:/docker-entrypoint-initdb.d/startup"
+      - "./oracle/initial_data:/docker-entrypoint-initdb.d/setup"
+      - oradata:/u01/app/oracle/oradata # persistent oracle database data.
+      - dbs:/u01/app/oracle/product/11.2.0/xe/dbs
+
+    network_mode: "bridge"
+    # networks:
+    #   - internal
