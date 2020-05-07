@@ -1,0 +1,36 @@
+version: '3.1'
+
+services:
+
+  redmine:
+    image: redmine
+    restart: always
+    networks:
+      - redmine
+    volumes:
+      - redmine-data:/usr/src/redmine/files
+    ports:
+      - 8080:3000
+    environment:
+      REDMINE_DB_MYSQL: mysql
+      REDMINE_DB_PASSWORD: redmine
+      REDMINE_SECRET_KEY_BASE: redminesecrect
+
+  mysql:
+    image: mysql:5.7
+    restart: always
+    networks:
+      - redmine
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: redmine
+      MYSQL_DATABASE: redmine
+
+volumes:
+  redmine-data:
+  mysql-data:
+
+networks:
+  redmine:
+    driver: bridge
